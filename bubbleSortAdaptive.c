@@ -8,16 +8,24 @@ void printArray(int *array, int n){
     printf("\n");
 }
 
-void bubbleSort(int *array,int n){
+void bubbleSortAdaptive(int *array,int n){
     int temp;
-    for (int i = 0; i < n - 1; i++) //For number of pass
+    int isSorted = 0;
+    for (int i = 0; i < n - 1; i++) // For number of pass
     {
-        for (int j = 0; j < n - 1 - i; j++){
+        printf("Working on pass number: %d\n", i + 1);
+        isSorted = 1;
+        for (int j = 0; j < n - 1 - i; j++)
+        {
             if(array[j]>array[j+1]){
                 temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
+                isSorted = 0;
             }
+        }
+        if(isSorted){
+            return;
         }
     }
 }
@@ -31,6 +39,6 @@ int main(void){
     }
 
     printArray(A, n);
-    bubbleSort(A, n);
+    bubbleSortAdaptive(A, n);
     printArray(A, n);
 }
